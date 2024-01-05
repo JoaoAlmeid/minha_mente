@@ -5,7 +5,7 @@
     <form class="d-flex align-items-center gap-4 col-md-6" method="POST"> 
         {% csrf_token %}  
         <button type="submit" class="btn btn-success h-50"><i class="fa fa-plus"></i></button> 
-        {{form}}  
+        {{form}} 
     </form>     
     <table class="table">
         <thead>
@@ -13,7 +13,7 @@
                 <th scope="col">Título</th> 
                 <th scope="col">Data</th>
                 <th scope="col">Status</th>
-                <th scope="col">Ações</th>  <!-- Melhorando para incluir ações -->
+                <th scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -27,12 +27,14 @@
                     </form>
                 </td>
                 <td style="width: 20%;">
-                    <div class="due_date {% if el.status.id == 3 %}check-status{% endif %}" id="due_date{{el.id}}" data-Title="{{el.id}}">
+                    <div class="due_date" id="due_date{{el.id}}" data-Title="{{el.id}}">
                         {% if el.due_date %}
-                            {{ el.due_date|date:"d-m-Y" }}
+                            {{ el.due_date|date:"d/m/Y" }}
                         {% else %}
-                            Sem data
+                            Sem datas
                         {% endif %}
+                        <!-- Adicione este bloco de depuração -->
+                        <p>Debug: {{ el.due_date }}</p>
                     </div>
                 </td>
                 <td style="width: 25%;">

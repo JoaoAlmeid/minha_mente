@@ -2,20 +2,21 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from mente_app.forms import TodoListForm
 from mente_app.models import Status, TodoList
-import logging
-
-logger = logging.getLogger(__name__)
 
 def create_item(request):
     todo = TodoList.objects.all()
     status_list = Status.objects.all()
-    if request.method == "POST": # para POST
-        form = TodoListForm(request.POST)  
+
+    if request.method == "POST":
+        form = TodoListForm(request.POST) 
+
         if form.is_valid():
-            form.save() # salva informação
+            form.save()
             return redirect('/')
+    else:
+        form = TodoListForm()
         
-    form = TodoListForm() # Formulário
+    form = TodoListForm()
     context = {"form" : form, 'todo': todo, 'status_list': status_list,}
     return render(request, 'index.html', context)
 
