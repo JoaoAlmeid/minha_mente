@@ -1,0 +1,8 @@
+.check-status {
+    text-decoration: line-through;
+    font-weight: 400;
+}
+
+.edit-btn {
+    border: none;
+}
