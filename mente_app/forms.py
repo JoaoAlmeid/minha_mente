@@ -6,15 +6,15 @@ class TodoListForm(forms.ModelForm):
     due_date = forms.DateField(
         label='Data',
         widget=forms.DateInput(
-            format='%Y-%m-%d',
+            format='%d-%m-%Y',
             attrs={
-                'type': 'date',
+                'type': 'date'
             }
         ),
     )
     class Meta:
         model = TodoList
-        fields = '__all__'
+        fields = ('title', 'due_date')
         exclude = ('status',)
 
     def __init__(self, *args, **kwargs):

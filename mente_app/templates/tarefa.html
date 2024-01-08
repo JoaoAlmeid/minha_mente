@@ -1,0 +1,44 @@
+<tbody class="tabela_lista">
+    {% for el in todo %}
+    <tr class="table align-middle" id="{{el.id}}">
+        <td style="width: 40%;">
+            <div class="title d-flex justify-center {% if el.status.id == 3 %}check-status{% endif %}" id="title{{el.id}}" data-Title="{{el.id}}">
+                <span>{{el.title}}</span>
+                <button type="button" class="btn expand-detalhs" data-detal="{{el.id}}" id="expand-detalhs{{el.id}}">
+                    <i id="desativado{{el.id}}" class="fa fa-solid fa-chevron-down"></i>
+                    <i id="ativado{{el.id}}" class="d-none fa fa-solid fa-chevron-up"></i>
+                </button>
+            </div>
+            <form class="d-none d-flex" id="form-title{{el.id}}" method="GET" style="width:35rem;">
+                <input class="form-control" type="text" id="inputText{{el.id}}" value="{{el.title}}">
+                <button type="submit" class="btn" id="edit{{el.id}}"><i class="fa fa-edit link-warning"></i></button>
+            </form>
+        </td>
+        <td style="width: 20%;">
+            <div class="due_date" id="due_date{{el.id}}" data-Title="{{el.id}}">
+                <p>{{el.due_date}}</p>
+            </div>
+        </td>
+        <td style="width: 25%;">
+            <div class="SelDiv">
+                <select class="form-select" name="status" id="{{el.id}}">
+                    {% for st in status_list %}
+                        <option value="{{st.id}}" {% if el.status.id == st.id %}selected{% endif %}>
+                            {{st.name}}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </td>
+        <td style="width: 15%;">
+                <button type="submit" class="btn action-edit" id="action-edit{{el.id}}" data-title="{{el.id}}"><i class="fa fa-edit link-warning"></i></button>
+                <a class="btn" id="btn-delete" data-delete="{{el.id}}"><i class="fa fa-trash link-danger"></i></a>
+        </td>
+    </tr>
+    <tr class="d-none" id="line_ocult{{el.id}}">
+        <th class="d-flex tarefa_det" data-detal="{{el.id}}" id="detalhs{{el.id}}">
+            <p>Lorem Ipsum é simplesmente um texto fictício da indústria de impressão e composição tipográfica. Lorem Ipsum tem sido o texto fictício padrão da indústria desde 1500, quando um impressor desconhecido pegou uma prova de tipos e a misturou para fazer um livro de espécimes de tipos</p>
+        </th>
+    </tr>
+    {% endfor %}
+</tbody>

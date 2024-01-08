@@ -1,10 +1,10 @@
 // Atualiza Titulo da Lista
 $("button.action-edit").click(function () {
     var data_id = $(this).attr("data-title");
-
+    
     $("form#form-title" + data_id).removeClass('d-none')
     $("div#title" + data_id).addClass('d-none')
-
+    
     $('button#edit' + data_id).on("click", function (e) {
         e.preventDefault();
         
@@ -25,6 +25,16 @@ $("button.action-edit").click(function () {
         }); 
 
     });
+});
+
+$("button.expand-detalhs").click(function () {
+    var data_id = $(this).attr("data-detal");
+
+    // Toggle classes nos elementos correspondentes
+    $("tr#line_ocult" + data_id).toggleClass('d-none');
+    $("tr#line_ocult" + data_id).toggleClass('line-ocult');
+    $("i#desativado" + data_id).toggleClass('d-none');
+    $("i#ativado" + data_id).toggleClass('d-none');
 });
 
 // Muda Status do Item da Lista

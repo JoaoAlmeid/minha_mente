@@ -1,8 +1,23 @@
+body, html {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
 .check-status {
     text-decoration: line-through;
     font-weight: 400;
 }
 
-.edit-btn {
-    border: none;
+.line-ocult .tarefa_det {
+    width: 50vw;
+    padding: 20px 0;
+}
+
+.form-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

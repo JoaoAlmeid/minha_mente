@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Criar tarefa{% endblock %}
+{% block content %}
+<main class="form-container d-flex align-items-center">
+    <form class="gap-4 col-md-5" method="POST"> 
+        {% csrf_token %}  
+        {{form}} 
+        <button type="submit" class="btn btn-success mt-3">Adicionar Tarefa<i class="fa fa-plus"></i></button> 
+    </form>
+</main>
+{% endblock %}

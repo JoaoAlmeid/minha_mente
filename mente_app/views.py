@@ -3,22 +3,27 @@ from django.shortcuts import get_object_or_404, render, redirect
 from mente_app.forms import TodoListForm
 from mente_app.models import Status, TodoList
 
-def create_item(request):
+def lista_itens(request):
     todo = TodoList.objects.all()
+    status_list = Status.objects.all()
+    context = {"todo": todo, "status_list": status_list}
+    return render(request, 'index.html', context)
+
+def create_item(request):
     status_list = Status.objects.all()
 
     if request.method == "POST":
-        form = TodoListForm(request.POST) 
+        form = TodoListForm(request.POST)
 
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('lista_itens')  # Redireciona para a lista de itens após salvar
+
     else:
         form = TodoListForm()
-        
-    form = TodoListForm()
-    context = {"form" : form, 'todo': todo, 'status_list': status_list,}
-    return render(request, 'index.html', context)
+
+    context = {"form": form, "status_list": status_list}
+    return render(request, 'create_item.html', context)
 
 def delete_item(request):
     todo_id  = request.GET.get('todo_id') # Id da Lista

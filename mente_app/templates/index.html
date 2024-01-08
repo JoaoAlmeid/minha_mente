@@ -2,11 +2,6 @@
 {% block title %}Lista de afazeres{% endblock %}
 {% block content %}
 <div class="p-5">
-    <form class="d-flex align-items-center gap-4 col-md-6" method="POST"> 
-        {% csrf_token %}  
-        <button type="submit" class="btn btn-success h-50"><i class="fa fa-plus"></i></button> 
-        {{form}} 
-    </form>     
     <table class="table">
         <thead>
             <tr>
@@ -16,45 +11,7 @@
                 <th scope="col">Ações</th>
             </tr>
         </thead>
-        <tbody>
-            {% for el in todo %}
-            <tr class="table align-middle" id="{{el.id}}">
-                <td style="width: 40%;">
-                    <div class="title {% if el.status.id == 3 %}check-status{% endif %}" id="title{{el.id}}" data-Title="{{el.id}}">{{el.title}}</div>
-                    <form class="d-none d-flex" id="form-title{{el.id}}" method="GET" style="width:35rem;">
-                        <input class="form-control" type="text" id="inputText{{el.id}}" value="{{el.title}}">
-                        <button type="submit" class="btn" id="edit{{el.id}}"><i class="fa fa-edit link-warning"></i></button>
-                    </form>
-                </td>
-                <td style="width: 20%;">
-                    <div class="due_date" id="due_date{{el.id}}" data-Title="{{el.id}}">
-                        {% if el.due_date %}
-                            {{ el.due_date|date:"d/m/Y" }}
-                        {% else %}
-                            Sem datas
-                        {% endif %}
-                        <!-- Adicione este bloco de depuração -->
-                        <p>Debug: {{ el.due_date }}</p>
-                    </div>
-                </td>
-                <td style="width: 25%;">
-                    <div class="SelDiv">
-                        <select class="form-select" name="status" id="{{el.id}}">
-                            {% for st in status_list %}
-                                <option value="{{st.id}}" {% if el.status.id == st.id %}selected{% endif %}>
-                                    {{st.name}}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </td>
-                <td style="width: 15%;">
-                        <button type="submit" class="btn action-edit" id="action-edit{{el.id}}" data-title="{{el.id}}"><i class="fa fa-edit link-warning"></i></button>
-                        <a class="btn" id="btn-delete" data-delete="{{el.id}}"><i class="fa fa-trash link-danger"></i></a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
+        {% include 'tarefa.html' %} 
     </table>
 </div>
 {% endblock %}
